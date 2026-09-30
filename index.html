@@ -1,1 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vale Hot Wheels</title>
 
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#FFFFF0;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+overflow:hidden;
+padding:20px;
+}
+
+.card{
+background:white;
+width:100%;
+max-width:420px;
+border-radius:25px;
+padding:25px;
+text-align:center;
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+position:relative;
+overflow:hidden;
+animation:aparecer 1s ease;
+}
+
+@keyframes aparecer{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.portada{
+cursor:pointer;
+}
+
+.portada img{
+width:180px;
+border-radius:18px;
+margin-bottom:15px;
+box-shadow:0 8px 18px rgba(0,0,0,.15);
+}
+
+.titulo{
+font-size:28px;
+font-weight:bold;
+color:#1565ff;
+margin-bottom:10px;
+}
+
+.subtitulo{
+color:#555;
+font-size:15px;
+}
+
+.carta{
+display:none;
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+}
+to{
+opacity:1;
+}
+}
+
+.mensaje{
+font-size:18px;
+line-height:1.7;
+color:#333;
+margin-top:15px;
+}
+
+.firma{
+margin-top:25px;
+font-size:18px;
+font-weight:bold;
+color:#1565ff;
+}
+
+.corazon{
+position:fixed;
+color:#1565ff;
+font-size:24px;
+animation:flotar 5s linear forwards;
+pointer-events:none;
+z-index:999;
+text-shadow:0 0 10px #1565ff;
+}
+
+@keyframes flotar{
+0%{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+100%{
+transform:translateY(-800px) scale(1.8);
+opacity:0;
+}
+}
+
+.boton{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+background:#1565ff;
+color:white;
+font-size:16px;
+border-radius:30px;
+cursor:pointer;
+transition:.3s;
+}
+
+.boton:hover{
+transform:scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="portada" onclick="abrirCarta()" id="portada">
+
+<img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600" alt="Hot Wheels">
+
+<div class="titulo">
+🎁 Vale Especial
+</div>
+
+<div class="subtitulo">
+Toca la tarjeta para abrirla
+</div>
+
+</div>
+
+<div class="carta" id="carta">
+
+<h2 style="color:#1565ff;">
+🚗 Vale por una salida pendiente
+</h2>
+
+<p class="mensaje">
+Te has ganado un vale por una salida pendiente,
+acompañado de unos Hot Wheels cuando la distancia
+deje de ser tan larga. ✨
+<br><br>
+No tiene fecha de vencimiento.
+Puede canjearse por una tarde agradable,
+una buena conversación y muchos momentos para recordar.
+🚙💙
+</p>
+
+<div class="firma">
+Con cariño, Nathali 🌷
+</div>
+
+<button class="boton" onclick="crearCorazones()">
+💙 Más corazones
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function abrirCarta(){
+
+document.getElementById("portada").style.display="none";
+document.getElementById("carta").style.display="block";
+
+crearCorazones();
+}
+
+function crearCorazones(){
+
+for(let i=0;i<20;i++){
+
+let corazon=document.createElement("div");
+
+corazon.innerHTML="💙";
+
+corazon.classList.add("corazon");
+
+corazon.style.left=Math.random()*100+"vw";
+corazon.style.bottom="-50px";
+corazon.style.fontSize=(20+Math.random()*25)+"px";
+
+document.body.appendChild(corazon);
+
+setTimeout(()=>{
+corazon.remove();
+},5000);
+
+}
+}
+
+</script>
+
+</body>
+</html>
